@@ -19,7 +19,7 @@ int main(int argc, char *argv[]) {
 	setvbuf(stdout, NULL, _IONBF, 0);
 	int operator;
 	do {
-		printf("Welcome to Matric Arithmetic. Which matrix operator would you like to use? (Enter 1-5)\n"
+		printf("Welcome to Matrix Arithmetic. Which matrix operator would you like to use? (Enter 1-5)\n"
 		       "1. Addition\n"
 		       "2. Subtraction\n"
 		       "3. Multiplication\n"
