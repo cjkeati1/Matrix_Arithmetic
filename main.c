@@ -133,12 +133,13 @@ void matrixMultiplication() {
 	double resultMatrix[MATRIX_A_ROWS][MATRIX_B_COLUMNS];
 	
 	int i, j, k;
+	double result, *firstTerm = NULL, *secondTerm = NULL;
 	/**
 	 * Since the resultant matrix has the same amount of rows as Matrix A, the outside loop will iterate
 	 * the same number of times as there are rows in Matrix A
 	 */
 	for (i = 0; i < MATRIX_A_ROWS; ++i) {
-		double result, firstTerm, secondTerm = 0;
+		
 		/**
 		 * MM utilizes the Dot Product. Thus, each element in each row in Matrix A (outside loop) will
 		 * be multiplied by its corresponding element in each column of Matrix B.
@@ -148,10 +149,10 @@ void matrixMultiplication() {
 			result = 0; // reset result to 0 every iteration
 			printf("\n");                ///	Iterates through each element in the current row of Matrix A
 			for (k = 0; k < MATRIX_A_COLUMNS; ++k) {
-				firstTerm = matrix_A[i][k]; // i = current row of matrix A (outside loop), k = current element in that row
-				secondTerm = matrix_B[k][j];// since # of Matrix B rows equals # of Matrix A columns, we can use k for matrix b rows to iterate through each element in the current Matrix B column. j is current column of Matrix B
-				result += (firstTerm * secondTerm); // adds to itself because of dot product
-				printf("%c%.2lf %c %.2lf%c%s", '(', firstTerm, '*', secondTerm, ')',
+				firstTerm = &matrix_A[i][k]; // i = current row of matrix A (outside loop), k = current element in that row
+				secondTerm = &matrix_B[k][j];// since # of Matrix B rows equals # of Matrix A columns, we can use k for matrix b rows to iterate through each element in the current Matrix B column. j is current column of Matrix B
+				result += ((*firstTerm) * (*secondTerm)); // adds to itself because of dot product
+				printf("%c%.2lf %c %.2lf%c%s", '(', *firstTerm, '*', *secondTerm, ')',
 				       ((k + 1) < MATRIX_A_COLUMNS) ? " + "
 				                                    : "\0");//	Prints each operation to give clear explanation as to what is actually happening
 			}
@@ -246,17 +247,17 @@ void matrixAddition() {
 	printf("\n\n");
 ///	Matrix Addition (A + B)
 	
-	int i, j, termOne, termTwo, sum;
+	int i, j, *termOne = NULL, *termTwo = NULL, sum;
 	int additionMatrix[MATRIX_A_ROWS][MATRIX_A_COLUMNS];
 	for (i = 0; i < MATRIX_A_ROWS; ++i) {
 		for (j = 0; j < MATRIX_A_COLUMNS; ++j) {
-			termOne = matrix_A[i][j];
-			termTwo = matrix_B[i][j];
-			sum = termOne + termTwo;
+			termOne = &matrix_A[i][j];
+			termTwo = &matrix_B[i][j];
+			sum = *termOne + *termTwo;
 			additionMatrix[i][j] = sum;
 			
 			printf("\nA[%d][%d] + B[%d][%d] == %c%d %c %d%c == %d\n", i + 1, j + 1, i + 1, j + 1,
-			       '(', termOne, '+', termTwo, ')', sum);
+			       '(', *termOne, '+', *termTwo, ')', sum);
 			printf("Element %dx%d of the resultant A+B matrix: %d\n", i + 1, j + 1, sum);
 			printf("\n=======================================\n");
 		}
@@ -342,18 +343,18 @@ void matrixSubtraction() {
 	}
 	printf("\n\n");
 	
-	int i, j, termOne, termTwo, sum;
+	int i, j, *termOne, *termTwo, difference;
 	int subtractionMatrix[MATRIX_A_ROWS][MATRIX_A_COLUMNS];
 	for (i = 0; i < MATRIX_A_ROWS; ++i) {
 		for (j = 0; j < MATRIX_A_COLUMNS; ++j) {
-			termOne = matrix_A[i][j];
-			termTwo = matrix_B[i][j];
-			sum = termOne - termTwo;
-			subtractionMatrix[i][j] = sum;
+			termOne = &matrix_A[i][j];
+			termTwo = &matrix_B[i][j];
+			difference = *termOne - *termTwo;
+			subtractionMatrix[i][j] = difference;
 			
 			printf("\nA[%d][%d] - B[%d][%d] == %c%d %c %d%c == %d\n", i + 1, j + 1, i + 1, j + 1,
-			       '(', termOne, '-', termTwo, ')', sum);
-			printf("Element %dx%d of the resultant A-B matrix: %d\n", i + 1, j + 1, sum);
+			       '(', *termOne, '-', *termTwo, ')', difference);
+			printf("Element %dx%d of the resultant A-B matrix: %d\n", i + 1, j + 1, difference);
 			printf("\n=======================================\n");
 		}
 	}
