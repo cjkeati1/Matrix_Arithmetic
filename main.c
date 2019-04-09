@@ -46,7 +46,7 @@ int main(int argc, char *argv[]) {
 				printf("\nERROR: You entered an invalid character. Please enter 1-5\n");
 				break;
 		}
-	} while (operator != 0);
+	} while (operator != 5);
 	
 	return 0;
 }
