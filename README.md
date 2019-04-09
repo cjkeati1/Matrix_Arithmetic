@@ -13,7 +13,7 @@ Performs various matrix operations
 
 ###### Matrix Multiplication
 - Matrix **A** must have the same number of columns as B does rows in order to be multiplied with eachother.
-- If **A** is an *n × m* matrix and **B** is an *m × p* matrix, their matrix product **AB** is an *n × p* matrix.
+- If **A** is an *n × m* matrix and **B** is an *m × p* matrix, their matrix product **A × B** is an *n × p* matrix.
 - The *m* entries across a row of **B** are multiplied with the m entries down a column of **B** and summed to produce an entry of **A × B**.
 
 ###### Scalar Multiplication
