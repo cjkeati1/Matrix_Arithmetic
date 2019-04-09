@@ -1,2 +1,2 @@
 # Matrix_Arithmetic
-Performs various operations concerning matrices
+Performs various operations concerning matrices (C)
