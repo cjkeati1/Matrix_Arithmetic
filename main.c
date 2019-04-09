@@ -4,7 +4,6 @@
 #include <stdio.h>
 #include <sys/time.h>
 
-
 ///=========================================Performs Matrix Arithmetic==================================================
 
 void matrixSubtraction();
@@ -20,11 +19,11 @@ int main(int argc, char *argv[]) {
 	int operator;
 	do {
 		printf("Welcome to Matrix Arithmetic. Which matrix operator would you like to use? (Enter 1-5)\n"
-		       "1. Addition\n"
-		       "2. Subtraction\n"
-		       "3. Multiplication\n"
-		       "4. Scalar Multiplication\n"
-		       "5. Quit ");
+		       "1. Addition (A + B)\n"
+		       "2. Subtraction (A - B)\n"
+		       "3. Multiplication (A x B)\n"
+		       "4. Scalar Multiplication (%sA)\n"
+		       "5. Quit ","\u03BB");
 		scanf("%d", &operator);
 		
 		switch (operator) {
@@ -57,7 +56,7 @@ void matrixMultiplication() {
 	int MATRIX_A_ROWS, MATRIX_A_COLUMNS, MATRIX_B_ROWS, MATRIX_B_COLUMNS;
 	int count = 0;
 	
-	printf("\n\t\t\t---Matrix Multiplication\n");
+	printf("\n\nMatrix Multiplication:\n\n");
 	do {
 		/**
 	 	* The number of columns in Matrix A must equal the number of rows in Matrix B for MM
@@ -80,7 +79,7 @@ void matrixMultiplication() {
 		scanf("%d", &MATRIX_B_COLUMNS);
 	} while (MATRIX_A_COLUMNS != MATRIX_B_ROWS); /// Verifies it is a valid operation
 	
-	printf("(%dx%d) * (%dx%d) = %dx%d\n", MATRIX_A_ROWS, MATRIX_A_COLUMNS,
+	printf("\n(%dx%d) * (%dx%d) = %dx%d\n\n", MATRIX_A_ROWS, MATRIX_A_COLUMNS,
 	       MATRIX_B_ROWS, MATRIX_B_COLUMNS, MATRIX_A_ROWS, MATRIX_B_COLUMNS);
 	
 	///	Declares matrix A
@@ -95,16 +94,15 @@ void matrixMultiplication() {
 	}
 	
 	///	Prints Matrix A
-	printf("\n\t\t\t---Matrix A---\n");
+	printf("\n\nMatrix A:\n\n");
 	for (int i = 0; i < MATRIX_A_ROWS; ++i) {
 		printf("\t\t");
 		for (int j = 0; j < MATRIX_A_COLUMNS; ++j) {
 			printf("%10.2lf", matrix_A[i][j]);
 		}
-		printf("\n");
+		printf("\n\n");
 	}
-	printf("\n\n\n");
-	
+	printf("\n\n");
 	
 	///	Declares Matrix B
 	double matrix_B[MATRIX_B_ROWS][MATRIX_B_COLUMNS];
@@ -117,15 +115,15 @@ void matrixMultiplication() {
 		}
 	}
 	///	Prints Matrix B
-	printf("\n\t\t\t---Matrix B---\n");
+	printf("\n\nMatrix B:\n\n");
 	for (int i = 0; i < MATRIX_B_ROWS; ++i) {
 		printf("\t\t");
 		for (int j = 0; j < MATRIX_B_COLUMNS; ++j) {
 			printf("%10.2lf", matrix_B[i][j]);
 		}
-		printf("\n");
+		printf("\n\n");
 	}
-	printf("\n\n\n");
+	printf("\n\n");
 	
 	///	Declares the resultant matrix (which always has dimensions of Matrix A Rows by Matrix B Columns in MM)
 	double resultMatrix[MATRIX_A_ROWS][MATRIX_B_COLUMNS];
@@ -163,13 +161,13 @@ void matrixMultiplication() {
 	}
 	
 	/// Prints resultant matrix
-	printf("\n\t\t\t---A * B Matrix---\n");
+	printf("\n\nA * B Matrix:\n\n");
 	for (i = 0; i < MATRIX_A_ROWS; ++i) {
 		printf("\t\t");
 		for (j = 0; j < MATRIX_B_COLUMNS; ++j) {
 			printf("%10.2f", resultMatrix[i][j]);
 		}
-		printf("\n");
+		printf("\n\n");
 	}
 	printf("\n\n");
 }
@@ -178,7 +176,7 @@ void matrixMultiplication() {
 void matrixAddition() {
 	int MATRIX_A_ROWS, MATRIX_A_COLUMNS, MATRIX_B_ROWS, MATRIX_B_COLUMNS;
 	int count = 0;
-	printf("\n\t\t-----Matrix Addition-----\n");
+	printf("\n\nMatrix Addition:\n\n");
 	
 	do {
 		if (count++ > 0) printf("\nError: The Dimensions of the two matrices must match.\n");
@@ -194,7 +192,7 @@ void matrixAddition() {
 		scanf("%d", &MATRIX_B_COLUMNS);
 	} while (MATRIX_A_ROWS != MATRIX_B_ROWS || MATRIX_A_COLUMNS != MATRIX_B_COLUMNS);
 	
-	printf("(%dx%d) + (%dx%d) = %dx%d\n", MATRIX_A_ROWS, MATRIX_A_COLUMNS,
+	printf("\n(%dx%d) + (%dx%d) = %dx%d\n\n", MATRIX_A_ROWS, MATRIX_A_COLUMNS,
 	       MATRIX_B_ROWS, MATRIX_B_COLUMNS, MATRIX_A_ROWS, MATRIX_B_COLUMNS);
 	
 	///	Declares matrix A
@@ -209,15 +207,15 @@ void matrixAddition() {
 	}
 	
 	///	Prints Matrix A
-	printf("\n\t\t\t---Matrix A---\n");
+	printf("\n\nMatrix A:\n\n");
 	for (int i = 0; i < MATRIX_A_ROWS; ++i) {
 		printf("\t\t");
 		for (int j = 0; j < MATRIX_A_COLUMNS; ++j) {
 			printf("%10.2f", matrix_A[i][j]);
 		}
-		printf("\n");
+		printf("\n\n");
 	}
-	printf("\n\n\n");
+	printf("\n\n");
 	
 	
 	///	Declares Matrix B
@@ -231,15 +229,15 @@ void matrixAddition() {
 		}
 	}
 	///	Prints Matrix B
-	printf("\n\t\t\t---Matrix B---\n");
+	printf("\n\nMatrix B:\n\n");
 	for (int i = 0; i < MATRIX_B_ROWS; ++i) {
 		printf("\t\t");
 		for (int j = 0; j < MATRIX_B_COLUMNS; ++j) {
 			printf("%10.2f", matrix_B[i][j]);
 		}
-		printf("\n");
+		printf("\n\n");
 	}
-	printf("\n\n");
+	printf("\n");
 ///	Matrix Addition (A + B)
 	
 	int i, j;
@@ -259,12 +257,13 @@ void matrixAddition() {
 		}
 	}
 	
-	printf("\n\t\t\t---A + B Matrix---\n");
+	printf("\n\nA + B Matrix:\n\n");
 	for (i = 0; i < MATRIX_A_ROWS; ++i) {
+		printf("\t\t");
 		for (j = 0; j < MATRIX_B_COLUMNS; ++j) {
 			printf("%10.2f", additionMatrix[i][j]);
 		}
-		printf("\n");
+		printf("\n\n");
 	}
 	printf("\n\n");
 }
@@ -273,7 +272,7 @@ void matrixAddition() {
 void matrixSubtraction() {
 	int MATRIX_A_ROWS, MATRIX_A_COLUMNS, MATRIX_B_ROWS, MATRIX_B_COLUMNS;
 	int count = 0;
-	printf("\n\t\t-----Matrix Subtraction-----\n");
+	printf("\n\nMatrix Subtraction:\n\n");
 	
 	do {
 		if (count++ > 0) printf("\nError: The Dimensions of the two matrices must match.\n");
@@ -289,7 +288,7 @@ void matrixSubtraction() {
 		scanf("%d", &MATRIX_B_COLUMNS);
 	} while (MATRIX_A_ROWS != MATRIX_B_ROWS || MATRIX_A_COLUMNS != MATRIX_B_COLUMNS);
 	
-	printf("(%dx%d) - (%dx%d) = %dx%d\n", MATRIX_A_ROWS, MATRIX_A_COLUMNS,
+	printf("\n(%dx%d) - (%dx%d) = %dx%d\n\n", MATRIX_A_ROWS, MATRIX_A_COLUMNS,
 	       MATRIX_B_ROWS, MATRIX_B_COLUMNS, MATRIX_A_ROWS, MATRIX_B_COLUMNS);
 	
 	///	Declares matrix A
@@ -304,15 +303,15 @@ void matrixSubtraction() {
 	}
 	
 	///	Prints Matrix A
-	printf("\n\t\t\t---Matrix A---\n");
+	printf("\n\nMatrix A:\n\n");
 	for (int i = 0; i < MATRIX_A_ROWS; ++i) {
 		printf("\t\t");
 		for (int j = 0; j < MATRIX_A_COLUMNS; ++j) {
 			printf("%10.2lf", matrix_A[i][j]);
 		}
-		printf("\n");
+		printf("\n\n");
 	}
-	printf("\n\n\n");
+	printf("\n\n");
 	
 	
 	///	Declares Matrix B
@@ -326,15 +325,15 @@ void matrixSubtraction() {
 		}
 	}
 	///	Prints Matrix B
-	printf("\n\t\t\t---Matrix B---\n");
+	printf("\n\nMatrix B:\n\n");
 	for (int i = 0; i < MATRIX_B_ROWS; ++i) {
 		printf("\t\t");
 		for (int j = 0; j < MATRIX_B_COLUMNS; ++j) {
 			printf("%10.2f", matrix_B[i][j]);
 		}
-		printf("\n");
+		printf("\n\n");
 	}
-	printf("\n\n");
+	printf("\n");
 	
 	int i, j;
 	double *termOne = NULL, *termTwo = NULL, difference = 0;
@@ -353,29 +352,30 @@ void matrixSubtraction() {
 		}
 	}
 	
-	printf("\n\t\t\t---A - B Matrix---\n");
+	printf("\n\nA - B Matrix:\n\n");
 	for (i = 0; i < MATRIX_A_ROWS; ++i) {
+		printf("\t\t");
 		for (j = 0; j < MATRIX_B_COLUMNS; ++j) {
 			printf("%10.2f", subtractionMatrix[i][j]);
 		}
-		printf("\n");
+		printf("\n\n");
 	}
 	printf("\n\n");
 }
 
-/// Scalar Multiplication (n * A) where n is a number and A is a matrix
+/// Scalar Multiplication (n * A) where n is a scalar and A is a matrix
 void scalarMultiplication() {
 	int MATRIX_ROWS, MATRIX_COLUMNS;
 	int i, j;
 	double scalar, result;
 	
-	printf("\n---Scalar Multiplication---\n");
+	printf("\n\nScalar Multiplication:\n\n");
 
 ///	Prompts user to enter the matrix dimensions of matrix A and B
 	printf("How many rows will the matrix have? ");
 	scanf("%d", &MATRIX_ROWS);
 	printf("How many columns will the matrix have? ");
-	scanf("%d", (int *) &MATRIX_COLUMNS);
+	scanf("%d", &MATRIX_COLUMNS);
 	///Prompts user to enter a scalar
 	double scalarMatrix[MATRIX_ROWS][MATRIX_COLUMNS];
 	
@@ -388,13 +388,13 @@ void scalarMultiplication() {
 	}
 	
 	///	Prints Matrix
-	printf("\n\t\t\t---Matrix---\n");
+	printf("\n\nMatrix A:\n\n");
 	for (i = 0; i < MATRIX_ROWS; ++i) {
 		printf("\t\t");
 		for (j = 0; j < MATRIX_COLUMNS; ++j) {
 			printf("%10.2f", scalarMatrix[i][j]);
 		}
-		printf("\n");
+		printf("\n\n");
 	}
 	
 	printf("\n\nEnter a scalar: ");
@@ -407,13 +407,14 @@ void scalarMultiplication() {
 			scalarMatrix[i][j] = result;
 		}
 	}
-	printf("\n\t\t\t---Scalar Matrix---\n");
+	printf("\n\nScalar Matrix %sA:\n\n", "\u03BB");
 	
 	for (i = 0; i < MATRIX_ROWS; ++i) {
+		printf("\t\t");
 		for (j = 0; j < MATRIX_COLUMNS; ++j) {
 			printf("%10.2f", scalarMatrix[i][j]);
 		}
-		printf("\n");
+		printf("\n\n");
 	}
 	printf("\n\n");
 	
