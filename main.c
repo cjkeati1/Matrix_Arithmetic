@@ -14,11 +14,13 @@ void matrixAddition();
 
 void scalarMultiplication();
 
+int gcd(int a, int b);
+
 int main(int argc, char *argv[]) {
 	setvbuf(stdout, NULL, _IONBF, 0);
 	int operator;
 	do {
-		printf("Welcome to Matrix Arithmetic. Which matrix operator would you like to use? (Enter 1-5)\n"
+		printf("Welcome to Matrix Arithmetic. Which matrix operation would you like to use? (Enter 1-5)\n"
 		       "1. Addition (A + B)\n"
 		       "2. Subtraction (A - B)\n"
 		       "3. Multiplication (A x B)\n"
@@ -50,7 +52,7 @@ int main(int argc, char *argv[]) {
 	return 0;
 }
 
-///	Matrix Multiplication (A * B) - aka MM
+///	Matrix Multiplication (A x B) - aka MM
 void matrixMultiplication() {
 	///	Declaration of matrix dimensions
 	int MATRIX_A_ROWS, MATRIX_A_COLUMNS, MATRIX_B_ROWS, MATRIX_B_COLUMNS;
@@ -61,8 +63,8 @@ void matrixMultiplication() {
 		/**
 	 	* The number of columns in Matrix A must equal the number of rows in Matrix B for MM
 	 	*
-	 	* Example 1: (2x2 matrix) * (2x6 matrix) is valid
-	 	* Example 2: (5x1 matrix) * (3x5 matrix) is invalid
+	 	* Example 1: (2x2 matrix) x (2x6 matrix) is valid
+	 	* Example 2: (5x1 matrix) x (3x5 matrix) is invalid
 	 	*
 	 	*/
 		
@@ -79,7 +81,7 @@ void matrixMultiplication() {
 		scanf("%d", &MATRIX_B_COLUMNS);
 	} while (MATRIX_A_COLUMNS != MATRIX_B_ROWS); /// Verifies it is a valid operation
 	
-	printf("\n(%dx%d) * (%dx%d) = %dx%d\n\n", MATRIX_A_ROWS, MATRIX_A_COLUMNS,
+	printf("\n(%dx%d) x (%dx%d) = %dx%d\n\n", MATRIX_A_ROWS, MATRIX_A_COLUMNS,
 	       MATRIX_B_ROWS, MATRIX_B_COLUMNS, MATRIX_A_ROWS, MATRIX_B_COLUMNS);
 	
 	///	Declares matrix A
@@ -134,6 +136,9 @@ void matrixMultiplication() {
 	 * Since the resultant matrix has the same amount of rows as Matrix A, the outside loop will iterate
 	 * the same number of times as there are rows in Matrix A
 	 */
+	
+	printf("NOTE: For display, the following operations were rounded to the nearest .01 place,"
+	       " though the result was calculated using the exact numbers that were inputted.\n");
 	for (i = 0; i < MATRIX_A_ROWS; ++i) {
 		
 		/**
@@ -141,10 +146,10 @@ void matrixMultiplication() {
 		 * be multiplied by its corresponding element in each column of Matrix B.
 		 * Hence, the inside loop iterates through each column of Matrix B
 		 */
-		 
+		
 		for (j = 0; j < MATRIX_B_COLUMNS; ++j) {
 			result = 0; // reset result to 0 every iteration
-			printf("\n");                ///	Iterates through each element in the current row of Matrix A
+			printf("\n");                /// Iterates through each element in the current row of Matrix A
 			for (k = 0; k < MATRIX_A_COLUMNS; ++k) {
 				firstTerm = &matrix_A[i][k]; // i = current row of matrix A (outside loop), k = current element in that row
 				secondTerm = &matrix_B[k][j];// since # of Matrix B rows equals # of Matrix A columns, we can use k for matrix b rows to iterate through each element in the current Matrix B column. j is current column of Matrix B
@@ -157,13 +162,13 @@ void matrixMultiplication() {
 			printf(" = %.2lf\n", result);
 			resultMatrix[i][j] = result; //sets current spot in matrix equal to result
 			
-			printf("Element %dx%d of the resultant A * B matrix: %.2lf\n", i + 1, j + 1, result);
+			printf("Element %dx%d of the resultant A x B matrix: %.2lf\n", i + 1, j + 1, result);
 			printf("\n=======================================\n");
 		}
 	}
 	
 	/// Prints resultant matrix
-	printf("\n\nA * B Matrix:\n\n");
+	printf("\n\nA x B Matrix:\n\n");
 	for (i = 0; i < MATRIX_A_ROWS; ++i) {
 		printf("\t\t");
 		for (j = 0; j < MATRIX_B_COLUMNS; ++j) {
@@ -245,6 +250,10 @@ void matrixAddition() {
 	int i, j;
 	double *termOne = NULL, *termTwo = NULL, sum;
 	double additionMatrix[MATRIX_A_ROWS][MATRIX_A_COLUMNS];
+	
+	printf("NOTE: For display, the following operations were rounded to the nearest .01 place,"
+	       " though the result was calculated using the exact numbers that were inputted.\n");
+	
 	for (i = 0; i < MATRIX_A_ROWS; ++i) {
 		for (j = 0; j < MATRIX_A_COLUMNS; ++j) {
 			termOne = &matrix_A[i][j];
@@ -340,6 +349,10 @@ void matrixSubtraction() {
 	int i, j;
 	double *termOne = NULL, *termTwo = NULL, difference = 0;
 	double subtractionMatrix[MATRIX_A_ROWS][MATRIX_A_COLUMNS];
+	
+	printf("NOTE: For display, the following operations were rounded to the nearest .01 place,"
+	       " though the result was calculated using the exact numbers that were inputted.\n");
+	
 	for (i = 0; i < MATRIX_A_ROWS; ++i) {
 		for (j = 0; j < MATRIX_A_COLUMNS; ++j) {
 			termOne = &matrix_A[i][j];
@@ -422,3 +435,7 @@ void scalarMultiplication() {
 	
 }
 
+int gcd(int a, int b) {
+	if (a == 0) return b;
+	return gcd(b % a, a);
+}
