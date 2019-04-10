@@ -1,5 +1,5 @@
 # Matrix Arithmetic
-Performs various matrix operations
+Performs various matrix operations and clearly displays each calculation made allowing for easy understanding.
 
 ###### Matrix Addition
 - Two matrices must have an equal number of rows and columns to be added.
