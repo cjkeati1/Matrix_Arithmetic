@@ -137,8 +137,8 @@ void matrixMultiplication() {
 	 * the same number of times as there are rows in Matrix A
 	 */
 	
-	printf("NOTE: For display, the following operations were rounded to the nearest .01 place,"
-	       " though the result was calculated using the exact numbers that were inputted.\n");
+	printf("NOTE: For display, the following terms were rounded to the nearest .01 place. "
+	       "However, the calculations were made using the exact numbers that were inputted.\n");
 	for (i = 0; i < MATRIX_A_ROWS; ++i) {
 		
 		/**
@@ -251,9 +251,8 @@ void matrixAddition() {
 	double *termOne = NULL, *termTwo = NULL, sum;
 	double additionMatrix[MATRIX_A_ROWS][MATRIX_A_COLUMNS];
 	
-	printf("NOTE: For display, the following operations were rounded to the nearest .01 place,"
-	       " though the result was calculated using the exact numbers that were inputted.\n");
-	
+	printf("NOTE: For display, the following terms were rounded to the nearest .01 place. "
+	       "However, the calculations were made using the exact numbers that were inputted.\n");
 	for (i = 0; i < MATRIX_A_ROWS; ++i) {
 		for (j = 0; j < MATRIX_A_COLUMNS; ++j) {
 			termOne = &matrix_A[i][j];
@@ -261,7 +260,7 @@ void matrixAddition() {
 			sum = *termOne + *termTwo;
 			additionMatrix[i][j] = sum;
 			
-			printf("\nA[%d][%d] + B[%d][%d] == (%.2f + %.2f) == %.2f\n", i + 1, j + 1, i + 1, j + 1,
+			printf("\nA[%d][%d] + B[%d][%d] = (%.2f + %.2f) = %.2f\n", i + 1, j + 1, i + 1, j + 1,
 			       *termOne, *termTwo, sum);
 			printf("Element %dx%d of the resultant A + B matrix: %.2f\n", i + 1, j + 1, sum);
 			printf("\n=======================================\n");
@@ -350,8 +349,8 @@ void matrixSubtraction() {
 	double *termOne = NULL, *termTwo = NULL, difference = 0;
 	double subtractionMatrix[MATRIX_A_ROWS][MATRIX_A_COLUMNS];
 	
-	printf("NOTE: For display, the following operations were rounded to the nearest .01 place,"
-	       " though the result was calculated using the exact numbers that were inputted.\n");
+	printf("NOTE: For display, the following terms were rounded to the nearest .01 place. "
+	       "However, the calculations were made using the exact numbers that were inputted.\n");
 	
 	for (i = 0; i < MATRIX_A_ROWS; ++i) {
 		for (j = 0; j < MATRIX_A_COLUMNS; ++j) {
@@ -360,7 +359,7 @@ void matrixSubtraction() {
 			difference = *termOne - *termTwo;
 			subtractionMatrix[i][j] = difference;
 			
-			printf("\nA[%d][%d] - B[%d][%d] == (%.2f - %.2f) == %.2f\n", i + 1, j + 1, i + 1, j + 1,
+			printf("\nA[%d][%d] - B[%d][%d] = (%.2f - %.2f) = %.2f\n", i + 1, j + 1, i + 1, j + 1,
 			       *termOne, *termTwo, difference);
 			printf("Element %dx%d of the resultant A - B matrix: %.2f\n", i + 1, j + 1, difference);
 			printf("\n=======================================\n");
@@ -435,7 +434,3 @@ void scalarMultiplication() {
 	
 }
 
-int gcd(int a, int b) {
-	if (a == 0) return b;
-	return gcd(b % a, a);
-}
